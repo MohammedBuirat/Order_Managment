@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1;
-using ConsoleApp1.DataAccessLayer;
+using ConsoleApp1.DataAccessLayer.SQLAcess;
+using ConsoleApp1.DataAccessLayer.MongoAccess;
 using System.Data.SqlTypes;
 using static ConsoleApp1.Enums.Enums;
 

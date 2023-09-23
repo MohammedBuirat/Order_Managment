@@ -1,13 +1,8 @@
 ﻿using Order_Managment;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleApp1.DataAccessLayer
+namespace ConsoleApp1.DataAccessLayer.SQLAcess
 {
     internal class SQLProductAccess : IProductDataAccess
     {
@@ -142,8 +137,8 @@ namespace ConsoleApp1.DataAccessLayer
                     }
                 }
             }
-            return false; 
-            
+            return false;
+
         }
 
         public bool ProductExistByName(string name)
@@ -156,7 +151,7 @@ namespace ConsoleApp1.DataAccessLayer
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        return (reader.Read());
+                        return reader.Read();
                     }
                 }
             }

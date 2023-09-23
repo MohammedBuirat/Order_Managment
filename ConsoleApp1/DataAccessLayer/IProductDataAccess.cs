@@ -1,9 +1,4 @@
 ﻿using Order_Managment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1.DataAccessLayer
 {
@@ -24,6 +19,5 @@ namespace ConsoleApp1.DataAccessLayer
         public bool DeleteProduct(int id);
 
         public bool AddProduct(Product product);
-
     }
 }

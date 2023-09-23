@@ -1,10 +1,5 @@
 ﻿using ConsoleApp1.DataAccessLayer;
 using Order_Managment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static ConsoleApp1.Enums.Enums;
 
 namespace ConsoleApp1
