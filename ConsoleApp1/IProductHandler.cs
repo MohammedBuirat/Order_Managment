@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Enums.Enums;
 
 namespace Order_Managment
 {
     internal interface IProductHandler
     {
-        public bool AddProduct(Product product);
+        public OperationResult AddProduct(Product product);
 
         public List<Product> GetAllProducts();
 
-        public bool EditProduct(int id, Product newProduct);
+        public OperationResult EditProduct(int id, Product newProduct);
 
-        public bool DeleteProduct(int id);
+        public OperationResult DeleteProduct(int id);
 
         public Product GetProductById(int id);
 

@@ -1,4 +1,7 @@
-﻿using System.Data.SqlTypes;
+﻿using ConsoleApp1;
+using ConsoleApp1.DataAccessLayer;
+using System.Data.SqlTypes;
+using static ConsoleApp1.Enums.Enums;
 
 namespace Order_Managment
 {
@@ -7,7 +10,7 @@ namespace Order_Managment
         static IProductHandler handler;
         static void Main(string[] args)
         {
-            handler = new SQLProductHandler();
+            handler = new ProductHandler(new SQLProductAccess());
             PickOperation();
         }
 
@@ -73,9 +76,37 @@ namespace Order_Managment
             }
         }
 
+        static void PrintResultOfOperation(OperationResult result)
+        {
+            if (result == OperationResult.Success)
+            {
+                Console.WriteLine("Opeartion was made sucessfully.");
+            }
+            else if (result == OperationResult.ConnectionError)
+            {
+                Console.WriteLine("Opeartion Failed, There was a problem with the connection.");
+            }
+            else if (result == OperationResult.ProductDoesNotExists)
+            {
+                Console.WriteLine("Operation Failed, there wehre no product with the given id.");
+            }
+            else if (result == OperationResult.OperationFailed)
+            {
+                Console.WriteLine("Opeartion Failed");
+            }
+            else if(result == OperationResult.ProductNameIsTaken)
+            {
+                Console.WriteLine("The given name is alredy taken");
+            }
+        }
+
         static void PrintAllProducts()
         {
             List<Product> products = handler.GetAllProducts();
+            if (products == null || products.Count() == 0)
+            {
+                Console.WriteLine("There is no stored products");
+            }
             foreach (var product in products)
             {
                 Console.WriteLine(product.ToString());
@@ -115,15 +146,9 @@ namespace Order_Managment
         {
             Console.WriteLine("Please enter the id of the product that you want to delete");
             int id = int.Parse(Console.ReadLine());
-            bool productWasDeleted = handler.DeleteProduct(id);
-            if (productWasDeleted)
-            {
-                Console.WriteLine("Product was deleted successfully");
-            }
-            else
-            {
-                Console.WriteLine("there is no product with this id");
-            }
+            OperationResult result = handler.DeleteProduct(id);
+            Console.Write("Delete ");
+            PrintResultOfOperation(result);
         }
 
         static void UpdateProduct()
@@ -144,15 +169,9 @@ namespace Order_Managment
             Console.WriteLine("Please enter the new quantity for the product " + id);
             int newQuantity = int.Parse(Console.ReadLine());
             Product newProdcut = new Product(oldProduct.Id, newName, newPrice, newQuantity);
-            bool productWasUpdated = handler.EditProduct(id, newProdcut);
-            if (productWasUpdated)
-            {
-                Console.WriteLine("Product was updated successfully");
-            }
-            else
-            {
-                Console.WriteLine("Error, The product was not updated there is a product with this name");
-            }
+            OperationResult result = handler.EditProduct(id, newProdcut);
+            Console.Write("Update ");
+            PrintResultOfOperation(result);
         }
 
         static void AddNewProduct()
@@ -164,15 +183,9 @@ namespace Order_Managment
             Console.WriteLine("Please enter the product quantity");
             int quantity = int.Parse(Console.ReadLine());
             Product newProduct = new Product(-1, name, price, quantity);
-            bool productWasAdded = handler.AddProduct(newProduct);
-            if (productWasAdded)
-            {
-                Console.WriteLine("Product was added successfully");
-            }
-            else
-            {
-                Console.WriteLine("Product was not added it looks like the name of the product is alredy taken");
-            }
+            OperationResult result = handler.AddProduct(newProduct);
+            Console.Write("Adding a new product ");
+            PrintResultOfOperation(result);
         }
     }
 }
