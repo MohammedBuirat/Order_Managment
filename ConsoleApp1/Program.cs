@@ -11,7 +11,7 @@ namespace Order_Managment
         static IProductHandler handler;
         static void Main(string[] args)
         {
-            handler = new ProductHandler(new SQLProductAccess());
+            handler = new ProductHandler(new MongoProductAccess());
             PickOperation();
         }
 
@@ -107,6 +107,7 @@ namespace Order_Managment
             if (products == null || products.Count() == 0)
             {
                 Console.WriteLine("There is no stored products");
+                return;
             }
             foreach (var product in products)
             {
@@ -139,7 +140,7 @@ namespace Order_Managment
             }
             else
             {
-                Console.WriteLine("There is no product with this name");
+                Console.WriteLine("There is no product with this id");
             }
         }
 
@@ -166,7 +167,7 @@ namespace Order_Managment
             Console.WriteLine("Please enter the new name for the product " + id);
             string newName = Console.ReadLine();
             Console.WriteLine("Please enter the new price for the product " + id);
-            SqlMoney newPrice = SqlMoney.Parse(Console.ReadLine());
+            decimal newPrice = decimal.Parse(Console.ReadLine());
             Console.WriteLine("Please enter the new quantity for the product " + id);
             int newQuantity = int.Parse(Console.ReadLine());
             Product newProdcut = new Product(oldProduct.Id, newName, newPrice, newQuantity);
@@ -180,7 +181,7 @@ namespace Order_Managment
             Console.WriteLine("Please enter the product name");
             string name = Console.ReadLine();
             Console.WriteLine("Please enter the product price");
-            SqlMoney price = SqlMoney.Parse(Console.ReadLine());
+            decimal price = decimal.Parse(Console.ReadLine());
             Console.WriteLine("Please enter the product quantity");
             int quantity = int.Parse(Console.ReadLine());
             Product newProduct = new Product(-1, name, price, quantity);

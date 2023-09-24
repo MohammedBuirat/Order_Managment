@@ -1,5 +1,4 @@
-﻿using Order_Managment;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
 namespace ConsoleApp1.DataAccessLayer.SQLAcess
@@ -62,7 +61,7 @@ namespace ConsoleApp1.DataAccessLayer.SQLAcess
                         {
                             int productId = reader.GetInt32(0);
                             string productName = reader.GetString(1);
-                            SqlMoney productPrice = reader.GetSqlMoney(2);
+                            decimal productPrice = reader.GetDecimal(2);
                             int productQuantity = reader.GetInt32(3);
                             product = new Product(productId, productName, productPrice, productQuantity);
                         }
@@ -87,7 +86,7 @@ namespace ConsoleApp1.DataAccessLayer.SQLAcess
                         {
                             int productId = reader.GetInt32(0);
                             string productName = reader.GetString(1);
-                            SqlMoney productPrice = reader.GetSqlMoney(2);
+                            decimal productPrice = reader.GetDecimal(2);
                             int productQuantity = reader.GetInt32(3);
                             product = new Product(productId, productName, productPrice, productQuantity);
                         }
@@ -112,7 +111,7 @@ namespace ConsoleApp1.DataAccessLayer.SQLAcess
                         {
                             int productId = reader.GetInt32(0);
                             string productName = reader.GetString(1);
-                            SqlMoney productPrice = reader.GetSqlMoney(2);
+                            decimal productPrice = reader.GetDecimal(2);
                             int productQuantity = reader.GetInt32(3);
                             Product product = new Product(productId, productName, productPrice, productQuantity);
                             productList.Add(product);

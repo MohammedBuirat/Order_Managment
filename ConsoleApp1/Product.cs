@@ -1,27 +1,28 @@
 ﻿using System.Data.SqlTypes;
+using System.Text.Json.Serialization;
 
-namespace Order_Managment
+namespace ConsoleApp1
 {
-    internal class Product
+    public class Product
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public SqlMoney Price { get; set; }
+        public decimal Price { get; set; }
         public int Quantity { get; set; }
 
-        public Product(int id, string name, SqlMoney price, int quantity)
+        public Product(int id, string name, decimal price, int quantity)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Price = price;
-            this.Quantity = quantity;
+            Id = id;
+            Name = name;
+            Price = price;
+            Quantity = quantity;
         }
 
         public Product() { }
 
         public override string ToString()
         {
-            return $"Product ID:  {this.Id}  Product Name:  {this.Name}  Price:    {this.Price}  Quantity: {this.Quantity}";
+            return $"Product ID:  {Id}  Product Name:  {Name}  Price:    {Price}  Quantity: {Quantity}";
         }
     }
 }

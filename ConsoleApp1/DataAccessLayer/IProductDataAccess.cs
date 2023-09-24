@@ -1,6 +1,4 @@
-﻿using Order_Managment;
-
-namespace ConsoleApp1.DataAccessLayer
+﻿namespace ConsoleApp1.DataAccessLayer
 {
     internal interface IProductDataAccess
     {
