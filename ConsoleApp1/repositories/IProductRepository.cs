@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp1.DataAccessLayer
 {
-    internal interface IProductDataAccess
+    internal interface IProductRepository
     {
         public bool ProductExistById(int id);
 

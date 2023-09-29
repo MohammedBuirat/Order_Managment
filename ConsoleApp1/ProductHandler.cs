@@ -6,11 +6,11 @@ namespace ConsoleApp1
 {
     internal class ProductHandler : IProductHandler
     {
-        IProductDataAccess ProductDataAccess;
+        IProductRepository ProductRepository;
 
-        public ProductHandler(IProductDataAccess dataAccess)
+        public ProductHandler(IProductRepository repository)
         {
-            ProductDataAccess = dataAccess;
+            ProductRepository = repository;
         }
 
         public OperationResult AddProduct(Product product)
